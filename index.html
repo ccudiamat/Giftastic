@@ -12,18 +12,15 @@
 
     <div id="buttons-view"></div>
 
-    <form id="movie-form">
-        <label for="movie-input">Add a Movie, Yo!</label>
+    <form id="topic-form">
+        <label for="topic-input">Let's try... </label>
 
-        <input type="text" id="movie-input"><br>
+        <input type="text" id="topic-input"><br>
 
-        <input id="add-movie" type="submit" value="Add a Movie, Yo!">
+        <input id="add-topic" type="submit" value="Another one.">
     </form>
-
-
+    
     <div id="gifs-appear-here"></div>
-
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -83,13 +80,13 @@
         }
 
         
-        $("#add-movie").on("click", function (event) {
+        $("#add-topic").on("click", function (event) {
             event.preventDefault();
             
-            var movie = $("#movie-input").val().trim();
+            var topic = $("#topic-input").val().trim();
 
          
-            topics.push(movie);
+            topics.push(topic);
 
            
             renderButtons();
