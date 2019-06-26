@@ -19,7 +19,7 @@
 
         <input id="add-topic" type="submit" value="Another one.">
     </form>
-    
+
     <div id="gifs-appear-here"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -52,6 +52,9 @@
 
                     var personImage = $("<img>");
                     personImage.attr("src", results[i].images.fixed_height.url);
+
+                    
+
 
                     gifDiv.prepend(p);
                     gifDiv.prepend(personImage);
