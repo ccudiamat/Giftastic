@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Giftastic</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
@@ -15,14 +17,26 @@
     <form id="topic-form">
         <label for="topic-input">Let's try... </label>
 
-        <input type="text" id="topic-input"><br>
+        <input type="text" id="topic-input">
 
-        <input id="add-topic" type="submit" value="Another one.">
+        <input id="add-topic" type="submit" value="Add it." class="btn btn-primary">
     </form>
 
-    <div id="gifs-appear-here"></div>
+    <br>
+
+    <div class="container">
+        <div class="row">
+            <div id="gifs-appear-here"></div>
+        </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
     <script type="text/javascript">
 
         var topics = ["Spongebob", "Anime", "Disney", "Pixar"]
@@ -48,7 +62,7 @@
 
                     var rating = results[i].rating;
 
-                    var p = $("<p>").text("Rating: " + rating);
+                    var p = $("<h6>").text("Rating: " + rating);
 
                     var personImage = $("<img>");
 
@@ -57,13 +71,14 @@
                     personImage.attr("data-animate", results[i].images.fixed_height.url);
                     personImage.attr("data-state", "still");
                     personImage.addClass("gif");
+                    personImage.addClass("rounded-sm");
 
                     gifDiv.prepend(p);
                     gifDiv.prepend(personImage);
 
                     $("#gifs-appear-here").prepend(gifDiv);
                 }
-                
+
                 $(".gif").on("click", function () {
 
                     var state = $(this).attr("data-state");
@@ -91,6 +106,8 @@
                 var a = $("<button>");
 
                 a.addClass("topics");
+
+                a.addClass("btn btn-info m-2");
 
                 a.attr("data-person", topics[i]);
 
@@ -120,6 +137,7 @@
         renderButtons();
 
     </script>
+
 
 
 </body>
