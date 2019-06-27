@@ -19,7 +19,7 @@
 
         <input id="add-topic" type="submit" value="Another one.">
     </form>
-
+    
     <div id="gifs-appear-here"></div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -27,7 +27,7 @@
 
         var topics = ["Spongebob", "Anime", "Disney", "Pixar"]
 
-        function displayMovieInfo() {
+        function displayGifs() {
 
             var person = $(this).attr("data-person");
             var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -51,18 +51,36 @@
                     var p = $("<p>").text("Rating: " + rating);
 
                     var personImage = $("<img>");
-                    personImage.attr("src", results[i].images.fixed_height.url);
 
-                    
-
+                    personImage.attr("src", results[i].images.fixed_height_still.url);
+                    personImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    personImage.attr("data-animate", results[i].images.fixed_height.url);
+                    personImage.attr("data-state", "still");
+                    personImage.addClass("gif");
 
                     gifDiv.prepend(p);
                     gifDiv.prepend(personImage);
 
                     $("#gifs-appear-here").prepend(gifDiv);
+
+                    $(".gif").on("click", function () {
+
+                        var state = $(this).attr("data-state");
+
+                        if (state === "still") {
+                            $(this).attr("src", $(this).attr("data-animate"))
+                            $(this).attr("data-state", "animate");
+                        }
+                        else {
+                            $(this).attr("src", $(this).attr("data-still"))
+                            $(this).attr("data-state", "still");
+                        }
+
+                    });
                 }
             });
         };
+
 
         function renderButtons() {
 
@@ -82,23 +100,23 @@
             }
         }
 
-        
+
         $("#add-topic").on("click", function (event) {
             event.preventDefault();
-            
+
             var topic = $("#topic-input").val().trim();
 
-         
+
             topics.push(topic);
 
-           
+
             renderButtons();
         });
 
-        
-        $(document).on("click", ".topics", displayMovieInfo);
 
-      
+        $(document).on("click", ".topics", displayGifs);
+
+
         renderButtons();
 
     </script>
